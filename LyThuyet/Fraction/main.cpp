@@ -1,8 +1,6 @@
 #include "Fraction.h"
 
 int main() {
-  #include <algorithm> // Include the necessary header file
-
   int n = 10;
 
   Fraction f1(1, 2), f2(3, 4);
