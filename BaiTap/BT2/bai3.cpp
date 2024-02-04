@@ -1,3 +1,9 @@
+/**
+ * Updated by thiendev.id.vn's author on August 17 2023
+ * Github: https://github.com/@ntdev204
+ * "A bit of fragrance clings to the hand that gives flowers!"
+ */
+
 #include <iostream>
 #include <cmath>
 
