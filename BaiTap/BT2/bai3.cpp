@@ -37,11 +37,14 @@ class Triangle {
 public:
   Point a, b, c;
 
+
   void input() {
     a.inputPoint("Enter point A:");
     b.inputPoint("Enter point B:");
     c.inputPoint("Enter point C:");
   }
+
+
 
   void display() {
     std::cout << "A: " << a << std::endl;
@@ -58,7 +61,10 @@ public:
   }
 
   float perimeter() {
-    return a.distance(b) + b.distance(c) + c.distance(a);
+    float ab = a.distance(b);
+    float bc = b.distance(c);
+    float ca = c.distance(a);
+    return ab + bc + ca;
   }
 };
 
