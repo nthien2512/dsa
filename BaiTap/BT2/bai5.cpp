@@ -1,14 +1,8 @@
-// Quản lý Học Viên
-// Xây dựng một lớp Student để mô tả thông tin về học viên bao gồm họ tên, tuổi, và điểm trung
-// bình.
-// Các phương thức gồm: - nhập thông tin của học viên từ bàn phím, in thông tin sách lên màn
-// hình.
-// Xây dựng hàm main nhập vào n học viên từ bàn phím, in thông tin các học viên vừa nhập lên
-// màn hình.
-// Thêm một phương thức để kiểm tra xem học viên có đỗ hay không (nếu điểm trung bình lớn hơn
-// hoặc bằng 5.0).
-// Lọc ra các học viên đỗ trong danh sách.
-// Không dùng using namespace std;
+/**
+ * Updated by thiendev.id.vn's author on August 17 2023
+ * Github: https://github.com/@ntdev204
+ * "A bit of fragrance clings to the hand that gives flowers!"
+ */
 
 #include <iostream>
 #include <string>
