@@ -23,10 +23,6 @@ public:
     input();
   }
 
-  void display() {
-    std::cout << "(" << x << ", " << y << ")\n";
-  }
-
   float distance(Point d) {
     float dx = x - d.x;
     float dy = y - d.y;
@@ -39,12 +35,37 @@ public:
   }
 };
 
+class Triangle {
+public:
+  Point a, b, c;
+
+  void input() {
+    a.inputPoint("Enter point A:");
+    b.inputPoint("Enter point B:");
+    c.inputPoint("Enter point C:");
+  }
+
+  void display() {
+    std::cout << "A: " << a << std::endl;
+    std::cout << "B: " << b << std::endl;
+    std::cout << "C: " << c << std::endl;
+  }
+
+  void action() {
+    float ab = a.distance(b);
+    float bc = b.distance(c);
+    float ca = c.distance(a);
+    float p = (ab + bc + ca) / 2.0;
+
+    std::cout << "Area: " << std::sqrt(p * (p - ab) * (p - bc) * (p - ca)) << std::endl;
+    std::cout << "Perimeter: " << ab + bc + ca << std::endl;
+  }
+};
+
 int main() {
-  Point p1, p2;
-  p1.inputPoint("Enter point 1:");
-  p2.inputPoint("Enter point 2:");
-  p1.display();
-  p2.display();
-  std::cout << "Distance between " << p1 << " and " << p2 << " is " << p1.distance(p2) << std::endl;
+  Triangle t;
+  t.input();
+  t.display();
+  t.action();
   return 0;
 }

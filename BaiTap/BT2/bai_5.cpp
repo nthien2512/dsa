@@ -8,20 +8,20 @@
 #include <string>
 
 class Student {
-  private:
+  public:
     std::string name;
     int age;
     float score;
   public:
     void input() {
       std::cout << "Nhap ten: ";
-      std::cin >> name;
+      std::getline(std::cin >> std::ws, name);
       std::cout << "Nhap tuoi: ";
       std::cin >> age;
       std::cout << "Nhap diem trung binh: ";
       std::cin >> score;
     }
-    void output() {
+    void display() {
       std::cout << "Ten: " << name << "\n";
       std::cout << "Tuoi: " << age << "\n";
       std::cout << "Diem trung binh: " << score << "\n";
@@ -45,14 +45,14 @@ int main() {
 
   std::cout << "Danh sach hoc vien:\n";
   for (int i = 0; i < n; i++) {
-    students[i].output();
+    students[i].display();
   }
-  std::cout << "\n";
+  // std::cout << "\n";
 
   std::cout << "Hoc vien do:\n";
   for (int i = 0; i < n; i++) {
     if (students[i].isPass()) {
-      students[i].output();
+      students[i].display();
     }
   }
 
