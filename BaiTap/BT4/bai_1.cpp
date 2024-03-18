@@ -23,27 +23,25 @@ class List {
     }
 
     void add_back(int a) {
-      Node *temp = new Node();
-      temp->elem = a;
       if (head == NULL) {
-        head = temp;
-        trail = temp;
+        head = trail = new Node();
+        head->elem = a;
       } else {
-        trail->next = temp;
-        trail = temp;
+        trail = trail->next = new Node();
+        trail->elem = a;
       }
       num++;
     }
 
     void add_front(int a) {
-      Node *temp = new Node();
-      temp->elem = a;
       if (head == NULL) {
-        head = temp;
-        trail = temp;
+        head = trail = new Node();
+        head->elem = a;
       } else {
-        temp->next = head;
-        head = temp;
+        Node* oldHead = head;
+        head = new Node();
+        head->elem = a;
+        head->next = oldHead;
       }
       num++;
     }
@@ -52,10 +50,10 @@ class List {
       Node *cur = head;
       while (cur != NULL) {
         if (cur->elem == x) {
-          Node *temp = new Node();
-          temp->elem = a;
-          temp->next = cur->next;
-          cur->next = temp;
+          Node *newNode = new Node();
+          newNode->elem = a;
+          newNode->next = cur->next;
+          cur->next = newNode;
           num++;
           return;
         }
@@ -67,15 +65,15 @@ class List {
       Node *cur = head;
       while (cur != NULL) {
         if (cur->elem == a) {
-          Node *temp = head;
           if (cur == head) {
             head = head->next;
-            delete temp;
+            delete cur;
           } else {
-            while (temp->next != cur) {
-              temp = temp->next;
+            Node *prev = head;
+            while (prev->next != cur) {
+              prev = prev->next;
             }
-            temp->next = cur->next;
+            prev->next = cur->next;
             delete cur;
           }
           num--;
@@ -84,8 +82,6 @@ class List {
         cur = cur->next;
       }
     }
-
-
 };
 
 int main() {
@@ -95,19 +91,15 @@ int main() {
   l.add_back(2);
   l.add_back(3);
   l.add_back(4);
-  // 1 2 3 4
 
   l.add_front(-1);
   l.add_front(-2);
-  // -2 -1 0 1 2 3 4
 
   l.insert(3, 0);
-  l.insert(1, 7);
-  // -2 -1 1 7 2 3 0 4
+  l.insert(4, 7);
 
   l.remove(0);
   l.remove(7);
-  // -2 -1 1 2 3 4
 
   Node *cur = l.head;
   while (cur != NULL) {
@@ -115,7 +107,6 @@ int main() {
     cur = cur->next;
   }
   std::cout << std::endl;
-
 
   return 0;
 }
