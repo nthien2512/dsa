@@ -43,9 +43,11 @@ class DanhBa {
     void inDanhSach() {
       Node* node = head;
       while (node != nullptr) {
+        std::cout << "----------------" << std::endl;
         std::cout << "So thue bao: " << node->soThueBao << std::endl;
         std::cout << "Ho ten: " << node->hoTen << std::endl;
         std::cout << "Dia chi: " << node->diaChi << std::endl;
+        std::cout << "----------------" << std::endl;
         node = node->next;
       }
     }
@@ -84,6 +86,7 @@ class DanhBa {
         }
         delete node;
       }
+      inDanhSach();
     }
     
     void timKiem(std::string soThueBao) {
