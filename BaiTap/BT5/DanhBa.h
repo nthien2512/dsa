@@ -64,11 +64,11 @@ class DanhBa {
       if (head == nullptr) {
         head = node;
       } else {
-        Node* newNode = head;
-        while (newNode->next != nullptr) {
-          newNode = newNode->next;
+        Node* p = head;
+        while (p->next != nullptr) {
+          p = p->next;
         }
-        newNode->next = node;
+        p->next = node;
       }
     }
 
