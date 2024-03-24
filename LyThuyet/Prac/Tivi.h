@@ -25,20 +25,35 @@ class Tivi {
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Tivi& tivi) {
-      return os << tivi.maHang << " " << tivi.tenTivi << " " << tivi.donGia << " " << tivi.soLuong;
+      return os << "Ma hang: " << tivi.maHang << "\nTen tivi: " << tivi.tenTivi 
+                << "\nDon gia: " << tivi.donGia << "\nSo luong: " << tivi.soLuong;
     }
 
     void display() const {
+      std::cout << "Danh sach tivi:\n";
       for (const auto& tivi : tivis) {
+        std::cout << "------------------\n";
         std::cout << tivi << std::endl;
+        std::cout << "------------------\n";
       }
     }
 
     void them() {
       Tivi tivi;
-      std::cout << "Nhap thong tin tivi:\n";
-      std::cout << "Nhap ma hang: ";
-      std::cin >> tivi.maHang;
+      bool isUnique;
+      do {
+        isUnique = true;
+        std::cout << "Nhap thong tin tivi:\n";
+        std::cout << "Nhap ma hang: ";
+        std::cin >> tivi.maHang;
+        for (const auto& existingTivi : tivis) {
+          if (existingTivi.layMaHang() == tivi.maHang) {
+            isUnique = false;
+            std::cout << "Ma hang da ton tai. Vui long nhap lai.\n";
+            break;
+          }
+        }
+      } while (!isUnique);
       std::cout << "Nhap ten tivi: ";
       std::cin >> tivi.tenTivi;
       std::cout << "Nhap don gia: ";
