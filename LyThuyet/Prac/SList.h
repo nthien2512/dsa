@@ -40,11 +40,11 @@ class SList {
     }
 
     void push_back(T x) {
-      Node* node = new Node(x);
+      Node* p = new Node(x);
       if (head == nullptr) {
-        head = trail = node;
+        head = trail = p;
       } else {
-        trail = trail->next = node;
+        trail = trail->next = p;
       }
     }
 
