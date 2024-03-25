@@ -6,6 +6,7 @@ class Tivi {
   private:
     std::vector<Tivi> tivis;
     std::string maHang;
+    std::string hangSX;
     std::string tenTivi;
     int donGia;
     int soLuong;
@@ -15,18 +16,21 @@ class Tivi {
     }
 
   public:
-    Tivi() : maHang(""), tenTivi(""), donGia(0), soLuong(0) {}
+    Tivi() : maHang(""), hangSX(""), tenTivi(""), donGia(0), soLuong(0) {}
 
-    Tivi(const std::string& maHang, const std::string& tenTivi, int donGia, int soLuong) 
-      : maHang(maHang), tenTivi(tenTivi), donGia(donGia), soLuong(soLuong) {}
+    Tivi(const std::string& maHang, const std::string& hangSX, const std::string& tenTivi, int donGia, int soLuong) 
+      : maHang(maHang), hangSX(hangSX), tenTivi(tenTivi), donGia(donGia), soLuong(soLuong) {}
 
     friend std::istream& operator>>(std::istream& is, Tivi& tivi) {
       return is >> tivi.maHang >> tivi.tenTivi >> tivi.donGia >> tivi.soLuong;
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Tivi& tivi) {
-      return os << "Ma hang: " << tivi.maHang << "\nTen tivi: " << tivi.tenTivi 
-                << "\nDon gia: " << tivi.donGia << "\nSo luong: " << tivi.soLuong;
+      return os << "Ma hang: " << tivi.maHang 
+                << "\nHang SX: " << tivi.hangSX 
+                << "\nTen tivi: " << tivi.tenTivi 
+                << "\nDon gia: " << tivi.donGia 
+                << "\nSo luong: " << tivi.soLuong;
     }
 
     void display() const {
@@ -46,6 +50,8 @@ class Tivi {
         std::cout << "Nhap thong tin tivi:\n";
         std::cout << "Nhap ma hang: ";
         std::cin >> tivi.maHang;
+        std::cout << "Nhap hang SX: ";
+        std::cin >> tivi.hangSX;
         for (const auto& existingTivi : tivis) {
           if (existingTivi.layMaHang() == tivi.maHang) {
             isUnique = false;
@@ -71,5 +77,34 @@ class Tivi {
         }
       }
       std::cout << "Khong tim thay tivi voi ma hang: " << maHang << std::endl;
+    }
+
+    // int sum(const std::string& hangSX) const {
+    //   int sum = 0;
+    //   for (const auto& tivi : tivis) {
+    //     if (tivi.hangSX == hangSX ) {
+    //       if (tivi.soLuong > 0) sum += tivi.donGia * tivi.soLuong;
+    //       else sum = 0;
+    //     }
+    //   }
+    //   return sum;
+    // }
+
+    int sum(const std::string& hangSX) const {
+    int sum = 0;
+    for (const auto& tivi : tivis) {
+        if (tivi.hangSX == hangSX && tivi.soLuong > 0) {
+            sum += tivi.donGia * tivi.soLuong;
+        }
+    }
+    return sum;
+}
+
+    void donTonKho() {
+      std::string hangSX;
+      std::cin.ignore();
+      std::cout << "Nhap hang SX: ";
+      getline(std::cin, hangSX);
+      std::cout << "Tong gia tri ton kho cua hang " << hangSX << ": " << sum(hangSX) << std::endl;
     }
 };

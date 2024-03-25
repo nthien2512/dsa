@@ -1,5 +1,3 @@
-#include <iostream>
-
 template <class T>
 class SList {
   private:
@@ -12,11 +10,11 @@ class SList {
     };
 
     Node* head;
-    Node* trail;
+    Node* tail;
 
   public:
 
-    SList() : head(nullptr), trail(nullptr) {}
+    SList() : head(nullptr), tail(nullptr) {}
 
     ~SList() {
       while (head != nullptr) {
@@ -32,19 +30,21 @@ class SList {
       }
     }
 
+    // Add point to the front of the list
     void push_front(T x) {
-      head = new Node(x, head);
-      if (trail == nullptr) {
-        trail = head;
+      Node* p = new Node(x, head);
+      head = p;
+      if (tail == nullptr) {
+        tail = p;
       }
     }
 
     void push_back(T x) {
       Node* p = new Node(x);
       if (head == nullptr) {
-        head = trail = p;
+        head = tail = p;
       } else {
-        trail = trail->next = p;
+        tail = tail->next = p;
       }
     }
 

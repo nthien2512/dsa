@@ -5,7 +5,8 @@ void menu() {
   std::cout << "----------- Menu -----------\n";
   std::cout << "1. Them tivi\n";
   std::cout << "2. Xoa tivi\n";
-  std::cout << "3. Hien thi danh sach tivi\n";
+  std::cout << "3. Tong gia tri ton kho cua hang\n";
+  std::cout << "4. Hien thi danh sach tivi\n";
   std::cout << "0. Thoat\n";
   std::cout << "-----------------------------\n";
   std::cout << "Lua chon: ";
@@ -14,17 +15,14 @@ void menu() {
 int main() {
   Tivi tivi;
   int choice;
-  system("cls");
   do {
     menu();
     std::cin >> choice;
     switch (choice) {
       case 1:
-        system("cls");
         tivi.them();
         break;
       case 2: {
-        system("cls");
         std::string maHang;
         std::cout << "Nhap ma hang tivi can xoa: ";
         std::cin >> maHang;
@@ -33,9 +31,13 @@ int main() {
         break;
       }
       case 3:
-        system("cls");
+        tivi.donTonKho();
+        break;
+      case 4:
         tivi.display();
         break;
+      case 0:
+        std::cout << "Da thoat chuong trinh!";
       default:
         std::cout << "Lua chon khong hop le\n";
     }
