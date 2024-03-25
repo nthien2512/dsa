@@ -79,17 +79,6 @@ class Tivi {
       std::cout << "Khong tim thay tivi voi ma hang: " << maHang << std::endl;
     }
 
-    // int sum(const std::string& hangSX) const {
-    //   int sum = 0;
-    //   for (const auto& tivi : tivis) {
-    //     if (tivi.hangSX == hangSX ) {
-    //       if (tivi.soLuong > 0) sum += tivi.donGia * tivi.soLuong;
-    //       else sum = 0;
-    //     }
-    //   }
-    //   return sum;
-    // }
-
     int sum(const std::string& hangSX) const {
     int sum = 0;
     for (const auto& tivi : tivis) {
