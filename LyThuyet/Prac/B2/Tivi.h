@@ -80,14 +80,14 @@ class Tivi {
     }
 
     int sum(const std::string& hangSX) const {
-    int sum = 0;
-    for (const auto& tivi : tivis) {
-      if (tivi.hangSX == hangSX && tivi.soLuong > 0) {
-        sum += tivi.donGia * tivi.soLuong;
+      int sum = 0;
+      for (const auto& tivi : tivis) {
+        if (tivi.hangSX == hangSX && tivi.soLuong > 0) {
+          sum += tivi.donGia * tivi.soLuong;
+        }
       }
+      return sum;
     }
-    return sum;
-}
 
     void donTonKho() {
       std::string hangSX;
