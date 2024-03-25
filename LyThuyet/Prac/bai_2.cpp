@@ -7,8 +7,8 @@ void menu() {
   std::cout << "2. Xoa tivi\n";
   std::cout << "3. Hien thi danh sach tivi\n";
   std::cout << "0. Thoat\n";
-  std::cout << "Lua chon: ";
   std::cout << "-----------------------------\n";
+  std::cout << "Lua chon: ";
 }
 
 int main() {
