@@ -31,36 +31,36 @@ class SList {
     }
 
     void push_front(T x) {
-      Node* p = new Node(x, head);
-      head = p;
+      Node* node = new Node(x, head);
+      head = node;
       if (tail == nullptr) {
-        tail = p;
+        tail = node;
       }
     }
 
     void push_back(T x) {
-      Node* p = new Node(x);
+      Node* node = new Node(x);
       if (head == nullptr) {
-        head = tail = p;
+        head = tail = node;
       } else {
-        tail = tail->next = p;
+        tail = tail->next = node;
       }
     }
 
     void erase(T x) {
-      Node* p = head;
+      Node* node = head;
       Node* prev = nullptr;
-      while (p != nullptr && p->elem != x) {
-        prev = p;
-        p = p->next;
+      while (node != nullptr && node->elem != x) {
+        prev = node;
+        node = node->next;
       }
-      if (p != nullptr) {
+      if (node != nullptr) {
         if (prev == nullptr) {
-          head = p->next;
+          head = node->next;
         } else {
-          prev->next = p->next;
+          prev->next = node->next;
         }
-        delete p;
+        delete node;
       }
     }
 };
