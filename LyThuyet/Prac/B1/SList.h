@@ -30,7 +30,6 @@ class SList {
       }
     }
 
-    // Add point to the front of the list
     void push_front(T x) {
       Node* p = new Node(x, head);
       head = p;
