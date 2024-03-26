@@ -1,14 +1,13 @@
-#include <windows.h>
 #include "Tivi.h"
 
 void menu() {
-  std::cout << "----------- Menu -----------\n";
+  std::cout << "--------------------- Menu ---------------------\n";
   std::cout << "1. Them tivi\n";
   std::cout << "2. Xoa tivi\n";
   std::cout << "3. Tong gia tri ton kho cua hang\n";
   std::cout << "4. Hien thi danh sach tivi\n";
   std::cout << "0. Thoat\n";
-  std::cout << "-----------------------------\n";
+  std::cout << "------------------------------------------------\n";
   std::cout << "Lua chon: ";
 }
 
@@ -30,14 +29,20 @@ int main() {
         std::cout << "Da xoa tivi co ma hang " << maHang << std::endl;
         break;
       }
-      case 3:
-        tivi.donTonKho();
+      case 3: {
+        std::string hangSX;
+        std::cin.ignore();
+        std::cout << "Nhap hang SX: ";
+        getline(std::cin, hangSX);
+        std::cout << "Tong gia tri ton kho cua hang " << hangSX << ": " << tivi.sum(hangSX) << std::endl;
         break;
+      }
       case 4:
         tivi.display();
         break;
       case 0:
         std::cout << "Da thoat chuong trinh!";
+        break;
       default:
         std::cout << "Lua chon khong hop le\n";
     }

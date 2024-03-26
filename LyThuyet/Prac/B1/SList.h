@@ -48,19 +48,19 @@ class SList {
     }
 
     void erase(T x) {
-      Node* node = head;
+      Node* p = head;
       Node* prev = nullptr;
-      while (node != nullptr && node->elem != x) {
-        prev = node;
-        node = node->next;
+      while (p != nullptr && p->elem != x) {
+        prev = p;
+        p = p->next;
       }
-      if (node != nullptr) {
+      if (p != nullptr) {
         if (prev == nullptr) {
-          head = node->next;
+          head = p->next;
         } else {
-          prev->next = node->next;
+          prev->next = p->next;
         }
-        delete node;
+        delete p;
       }
     }
 };

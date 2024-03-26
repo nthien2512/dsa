@@ -12,7 +12,7 @@ int main() {
   listPoint.push_back(p1);
   listPoint.push_front(p2);
   listPoint.push_back(p3);
-  listPoint.erase(Point<double>(2.0, 2.5));
+  listPoint.erase(Point<double>(1.0, 2.0));
   listPoint.printList();
 
   return 0;
