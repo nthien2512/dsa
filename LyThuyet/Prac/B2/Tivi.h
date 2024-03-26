@@ -2,13 +2,14 @@
 #include <string>
 #include <vector>
 
+
 class Tivi {
   private:
     std::vector<Tivi> tivis;
     std::string maHang;
     std::string hangSX;
     std::string tenTivi;
-    int donGia;
+    long long donGia;
     int soLuong;
 
     const std::string& layMaHang() const {
@@ -79,8 +80,8 @@ class Tivi {
       std::cout << "Khong tim thay tivi voi ma hang: " << maHang << std::endl;
     }
 
-    int sum(const std::string& hangSX) const {
-      int sum = 0;
+    long long sum(const std::string& hangSX) const {
+      long long sum = 0;
       for (const auto& tivi : tivis) {
         if (tivi.hangSX == hangSX && tivi.soLuong > 0) {
           sum += tivi.donGia * tivi.soLuong;
