@@ -1,164 +1,139 @@
-// Khái niệm cây tìm kiếm nhị phân
-/* 
-Cây tìm kiếm nhị phân (Binary Search Tree) là một cấu trúc dữ liệu dạng cây mà mỗi nút có tối đa hai nút con, 
-nút con bên trái có giá trị nhỏ hơn nút cha và nút con bên phải có giá trị lớn hơn nút cha. 
-*/
-
-// Cấu trúc lớp của cây tìm kiếm nhị phân
 #include <iostream>
-#include <vector>
-#include <algorithm>
+using namespace std;
 
-template <class N>
-class Node {
+class TreeNode {
 public:
-  N value;
-  Node<N>* left;
-  Node<N>* right;
+    int value;
+    TreeNode* left;
+    TreeNode* right;
 
-  Node(N val) : value(val), left(nullptr), right(nullptr) {}
+    TreeNode(int val) : value(val), left(nullptr), right(nullptr) {}
 };
 
-template <class B>
-class BT {
+class BinaryTree {
 private:
-  Node<B>* root;
+    TreeNode* root;
 
-  Node<B>* insertRecursive(Node<B>* node, B value) {
-    if (node == nullptr) {
-      return new Node<B>(value);
+    TreeNode* addNode(TreeNode* node, int key) {
+        if (!node) return new TreeNode(key);
+        if (key < node->value) node->left = addNode(node->left, key);
+        else if (key > node->value) node->right = addNode(node->right, key);
+        return node;
     }
-    if (value < node->value) {
-      node->left = insertRecursive(node->left, value);
-    } else if (value > node->value) {
-      node->right = insertRecursive(node->right, value);
-    }
-    return node;
-  }
 
-  Node<B>* deleteRecursive(Node<B>* node, B value) {
-    if (node == nullptr) {
-      return node;
+    TreeNode* findMin(TreeNode* node) {
+        while (node->left) node = node->left;
+        return node;
     }
-    if (value < node->value) {
-      node->left = deleteRecursive(node->left, value);
-    } else if (value > node->value) {
-      node->right = deleteRecursive(node->right, value);
-    } else {
-      if (node->left == nullptr) {
-        Node<B>* temp = node->right;
-        delete node;
-        return temp;
-      } else if (node->right == nullptr) {
-        Node<B>* temp = node->left;
-        delete node;
-        return temp;
-      }
-      Node<B>* temp = minValueNode(node->right);
-      node->value = temp->value;
-      node->right = deleteRecursive(node->right, temp->value);
-    }
-    return node;
-  }
 
-  Node<B>* maxValueNode(Node<B>* node) {
-    Node<B>* current = node;
-    while (current && current->right != nullptr) {
-      current = current->right;
+    TreeNode* deleteNode(TreeNode* node, int key) {
+        if (!node) return node;
+        if (key < node->value) node->left = deleteNode(node->left, key);
+        else if (key > node->value) node->right = deleteNode(node->right, key);
+        else {
+            if (!node->left) {
+                TreeNode* temp = node->right;
+                delete node;
+                return temp;
+            } else if (!node->right) {
+                TreeNode* temp = node->left;
+                delete node;
+                return temp;
+            }
+            TreeNode* temp = findMin(node->right);
+            node->value = temp->value;
+            node->right = deleteNode(node->right, temp->value);
+        }
+        return node;
     }
-    return current;
-  }
 
-  Node<B>* minValueNode(Node<B>* node) {
-    Node<B>* current = node;
-    while (current && current->left != nullptr) {
-      current = current->left;
+    bool searchNode(TreeNode* node, int key) {
+        if (!node) return false;
+        if (key < node->value) return searchNode(node->left, key);
+        else if (key > node->value) return searchNode(node->right, key);
+        return true;
     }
-    return current;
-  }
 
-  bool searchRecursive(Node<B>* node, B value) {
-    if (node == nullptr) {
-      return false;
+    void inorder(TreeNode* node) {
+        if (node) {
+            inorder(node->left);
+            cout << node->value << " ";
+            inorder(node->right);
+        }
     }
-    if (node->value == value) {
-      return true;
-    }
-    if (value < node->value) {
-      return searchRecursive(node->left, value);
-    } else {
-      return searchRecursive(node->right, value);
-    }
-  }
 
-  void inorderTraversal(Node<B>* node, std::vector<B>& result) {
-    if (node == nullptr) {
-      return;
+    void preorder(TreeNode* node) {
+        if (node) {
+            cout << node->value << " ";
+            preorder(node->left);
+            preorder(node->right);
+        }
     }
-    inorderTraversal(node->left, result);
-    result.push_back(node->value);
-    inorderTraversal(node->right, result);
-  }
 
-  void preorderTraversal(Node<B>* node, std::vector<B>& result) {
-    if (node == nullptr) {
-      return;
+    void postorder(TreeNode* node) {
+        if (node) {
+            postorder(node->left);
+            postorder(node->right);
+            cout << node->value << " ";
+        }
     }
-    result.push_back(node->value);
-    preorderTraversal(node->left, result);
-    preorderTraversal(node->right, result);
-  }
 
-  void postorderTraversal(Node<B>* node, std::vector<B>& result) {
-    if (node == nullptr) {
-      return;
+    int height(TreeNode* node) {
+        if (!node) return 0;
+        return max(height(node->left), height(node->right)) + 1;
     }
-    postorderTraversal(node->left, result);
-    postorderTraversal(node->right, result);
-    result.push_back(node->value);
-  }
 
-  int heightRecursive(Node<B>* node) {
-    if (node == nullptr) {
-      return -1;
+    int findMax(TreeNode* node) {
+        while (node->right) node = node->right;
+        return node->value;
     }
-    return 1 + std::max(heightRecursive(node->left), heightRecursive(node->right));
-  }
+
+    int findMinValues(TreeNode* node) {
+        while (node->left) node = node->left;
+        return node->value;
+    }
 
 public:
-  BT() : root(nullptr) {}
+    BinaryTree() : root(nullptr) {}
 
-  void insert(B value) {
-    root = insertRecursive(root, value);
-  }
+    void addNode(int key) {
+        root = addNode(root, key);
+    }
 
-  void remove(B value) {
-    root = deleteRecursive(root, value);
-  }
+    void deleteNode(int key) {
+        root = deleteNode(root, key);
+    }
 
-  bool search(B value) {
-    return searchRecursive(root, value);
-  }
+    bool searchNode(int key) {
+        return searchNode(root, key);
+    }
 
-  std::vector<B> inorder() {
-    std::vector<B> result;
-    inorderTraversal(root, result);
-    return result;
-  }
+    void inorder() {
+        inorder(root);
+        cout << endl;
+    }
 
-  std::vector<B> preorder() {
-    std::vector<B> result;
-    preorderTraversal(root, result);
-    return result;
-  }
+    void preorder() {
+        preorder(root);
+        cout << endl;
+    }
 
-  std::vector<B> postorder() {
-    std::vector<B> result;
-    postorderTraversal(root, result);
-    return result;
-  }
+    void postorder() {
+        postorder(root);
+        cout << endl;
+    }
 
-  int height() {
-    return heightRecursive(root);
-  }
+    int height() {
+        return height(root);
+    }
+
+    int findMax() {
+        if (!root) throw runtime_error("Tree is empty");
+        return findMax(root);
+    }
+
+    int findMin() {
+        if (!root) throw runtime_error("Tree is empty");
+        return findMinValues(root);
+    }
 };
