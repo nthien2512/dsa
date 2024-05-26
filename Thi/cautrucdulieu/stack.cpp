@@ -3,6 +3,7 @@
 Ngăn xếp (Stack) là một cấu trúc dữ liệu dạng danh sách mà các phần tử được thêm vào và lấy ra theo nguyên tắc LIFO (Last In First Out).
 */
 
+#include <iostream>
 class StackSl {
   private:
     struct Node {
@@ -54,5 +55,14 @@ class StackSl {
 
     bool isEmpty() {
       return top == nullptr;
+    }
+
+    void printStack() {
+      Node *tmp = top;
+      while (tmp != nullptr) {
+        std::cout << tmp->elem << " ";
+        tmp = tmp->next;
+      }
+      std::cout << std::endl;
     }
 };
