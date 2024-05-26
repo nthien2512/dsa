@@ -69,12 +69,9 @@ class SList {
 
     void search(T x) {
       Node* p = head;
-      Node* prev = nullptr;
       while (p != nullptr && p->elem != x) {
-        prev = p;
-        p = p->next;
+        std::cout << p->elem;
       }
-      std::cout << p->elem;
     }
 };
 
@@ -131,8 +128,6 @@ int main() {
   DocGia dg;
 
   listDocGia.push_back(DocGia(123, "TH", "203", "DC"));
-
-
 
   int choice;
 
