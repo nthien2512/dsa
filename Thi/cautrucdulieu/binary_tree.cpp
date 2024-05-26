@@ -126,7 +126,7 @@ private:
   }
 
 public:
-  BST() : root(nullptr) {}
+  BT() : root(nullptr) {}
 
   void insert(B value) {
     root = insertRecursive(root, value);
