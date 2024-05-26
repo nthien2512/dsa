@@ -1,11 +1,3 @@
-// Merge sort algorithm
-
-// Trình bày ý tưởng thuật toán sắp xếp trộn
-// 1. Chia mảng thành 2 mảng con
-// 2. Sắp xếp 2 mảng con
-// 3. Trộn 2 mảng con đã sắp xếp thành mảng lớn
-// 4. Lặp lại bước 1, 2, 3 cho tới khi mảng đã sắp xếp
-
 void mergeSort(int arr[], int l, int m, int r) {
   int n1 = m - l + 1;
   int n2 = r - m;
