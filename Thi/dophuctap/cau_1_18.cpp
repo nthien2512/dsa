@@ -10,7 +10,5 @@ int cau2(int n, int a[]) {
   return k; // 1 phép trả về
 }
 
-// Tổng phép toán: 5n(n - 1)/2 + n + n + n + 1 + 1 + 1 + 1 + 1 = 5n^2/2 + n/2 + 5
+// Tổng phép toán: 5n^2/2 + n/2 + 5
 // Độ phức tạp thuật toán: O(n^2)
-
-// n - 1 n - 2 1 -> 1 + 2 + ... n - 1

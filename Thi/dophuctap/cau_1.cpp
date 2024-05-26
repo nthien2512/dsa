@@ -12,5 +12,5 @@ int cau1(int n, int p, int u, int x[], int y[]) {
   return f; // 1 phép trả về
 }
 
-// Tổng phép toán: 3n(n - 1)/2 + 3n + n + n + n + n + 1 + 1 + 1 + 1 + 1 = 3n^2/2 + 11n/2 + 5
+// Tổng phép toán: 3n^2/2 + 11n/2 + 5
 // Độ phức tạp thuật toán: O(n^2)
