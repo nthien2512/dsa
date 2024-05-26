@@ -72,9 +72,19 @@ class QuanLyLaptop {
     }
 
     Laptop* timKiemLaptopTheoModel(const std::string &model) {
-      for (auto &laptop : laptops) {
-        if (laptop.getModel() == model) {
-          return &laptop;
+      int left = 0;
+      int right = laptops.size() - 1;
+
+      while (left <= right) {
+        int mid = left + (right - left) / 2;
+        std::string midModel = laptops[mid].getModel();
+
+        if (midModel == model) {
+          return &laptops[mid];
+        } else if (midModel < model) {
+          left = mid + 1;
+        } else {
+          right = mid - 1;
         }
       }
       return nullptr;
