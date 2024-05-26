@@ -5,6 +5,8 @@ Hàng đợi (Queue) là một cấu trúc dữ liệu dạng danh sách mà cá
 
 // Cấu trúc lớp của hàng đợi
 
+#include <iostream>
+
 template <class N>
 class Node {
   public:
